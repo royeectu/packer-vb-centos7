@@ -1,0 +1,5 @@
+packer_cache
+*.vmdk
+*.ovf
+*.iso
+.DS_Store

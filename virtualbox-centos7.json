@@ -1,0 +1,26 @@
+{
+    "builders": [
+        {
+            "type": "virtualbox-iso",
+            "guest_os_type": "RedHat_64",
+            "iso_url": "http://mirrors.prometeus.net/centos/7/isos/x86_64/CentOS-7-x86_64-Everything-1810.iso",
+            "iso_checksum": "918975cdf947e858c9a0c77d6b90a9a56d9977f3a4496a56437f46f46200cf71",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "packer",
+            "ssh_wait_timeout": "2h",
+            "shutdown_command": "shutdown",
+            "cpus": "2",
+            "memory": "2048",
+            "disk_size": "40000",
+            "http_directory": "http",
+            "boot_command": [
+                "<up><tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+            ],
+            "vboxmanage_post": [
+                ["modifyvm", "{{.Name}}", "--nic1", "bridged"]
+            ],
+            "vm_name": "virtualbox-centos7"
+        }
+    ]  
+}
